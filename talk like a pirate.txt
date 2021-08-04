@@ -1,0 +1,49 @@
+#Danny Ryan
+#Pirate Translater
+#3/19/2020
+
+
+import csv 
+from random import random
+
+with open("Translation.txt", newline = '') as f:
+    reader = csv.reader(f)
+    data = list(reader)
+    
+    dict = {}
+  
+for i in data:
+      a = i[0]
+      a = a.strip("'")
+      b = a.split(':')
+      print(b)
+      dict[b[0]] = b[1]
+      
+
+#print(dict)
+
+#scanner = input("enter a phrase:")
+#while scanner != ("quit"):
+while 1:
+    scanner = " " + input("enter a phrase:") + " "
+    for key in dict:
+        key1 = " " + key + " "
+        if key1 in scanner:
+            scanner = scanner.replace(" " + key + " "," " + dict[key] + " ")
+        if scanner == ' quit ':
+          exit()
+    randy = random()
+    if randy < 0.3:
+              print(scanner + ", arr.")
+    else:
+            print(scanner)
+
+
+#with open("Translation.txt") as f:
+   # for line in f:
+    #    (key, val) = line.split(':')
+     #   key = key.strip()
+      #  val = val.strip()
+       # pirateDict[key] = val
+#userInput = userInput.replace(" " + key + " ", " " + pirateDict[key] + " ")
+

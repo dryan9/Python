@@ -1,0 +1,103 @@
+"""
+Python functional programming classwork
+3/17/2021
+Danny Ryan
+
+"""
+
+
+#Create and test a solution to solve the following problems using
+# functional programming:
+strs = ["elon", "mascot", "phoenix", "clemson", "has", "tiger"]
+ints = [5, 17, 7, 2, 4, 15, 90]
+
+# Problem 1: Given a list of Strings, create and print a list of strings, but
+# omit any that contain an 'a'. EX) given the inputs in "strs" above, the result
+# should be a list with ["Elon", "Phoenix", "Clemson", "Tiger"] - Print your result to test
+
+def s(x):
+    return "a" not in x
+ss = list(filter(s,strs))
+print(ss)
+
+# Problem 2: Given a list of Strings, first append an 'i' to the end,
+# then remove any strings that contain the substring 'ni'.
+
+def append(x):
+    return x + "i"
+def remove(x):
+    return "ni" not in x
+s_append = list(map(append,strs))
+s_remove = list(filter(remove,s_append))
+print(s_remove) 
+
+
+# Problem 3: Given a list of integers, create and print a list with all
+# "teens" removed (teens are any numbers between 13 and 19)
+
+def noTeens(x):
+    return not 13<x<19
+result = list(filter(noTeens, ints))
+print(result)
+
+# Problem 4: Given a list of integers, remove any with two or more digits.
+# Then, sum the squares of all remaining numbers and add the product to 42.
+# (In the 'ints' list provided, the correct answer should be 42+25+49+4+16 = 136
+import functools
+
+def lessTen(x):
+    return x < 10
+def square(x):
+    return x*x
+def fourtytwo(x,y):
+    return x+y
+ints1 = list(filter(lessTen,ints))
+ints2 = list(map(square,ints1))
+ints3 = functools.reduce(fourtytwo, ints2)+42
+print(ints3)
+
+
+# Problem 5: Given a list of Strings, create and print a list of strings by first
+# removing any with lengths between 4 and 6 (inclusive), then add a "z" after the
+# first letter of each remaining word.
+
+def leng(x):
+    return not 3 < len(x) < 7
+def z(x):
+    return x[:1] + 'z' + x[1:]
+strs1 = list(filter(leng,strs))
+strs2 = list(map(z,strs1))
+print(strs2)
+
+
+# Problem 6: Given a list of integers, create and print a list of each of the
+# numbers multiplied by 3, removing any of the resulting values that end in 1.
+
+def three(x):
+    return 3*x
+def one(x):
+    return not 1 == x%10
+timesthree = list(map(three,ints))
+end = list(filter(one,timesthree))
+print(end)
+
+# Problem 7: Given a collection of integers, remove any that end in 7, then
+# add together each of the remaining numbers plus an additional 2 every time
+# a pair of numbers is added.
+# EX: From the list above, after numbers ending in 7's are removed, the remaining
+# values would be [5,2,4,15,90]. The math requested for this problem would result in:
+# (5 + 2 + 2) # given that the first two values are 5 ans 2, add them plus 2
+# (9 + 4 + 2) # Given 11 from the prior sum, add 4 plus 2 extra
+# (15 + 15 + 2)// Given 17 from the prior sum, add 15 plus 2 extra
+# (32 + 90 + 2)// Finally, add 90 plus 2 to the running sum to get the result of 124
+# HINT: This is a relatively easy operation - the whole process can be accomplished with
+# two function calls.
+
+def seven(x):
+    return not x%10 == 7
+def additional(x,y):
+    return x+y+2
+int1 = list(filter(seven, ints))
+ints2 = functools.reduce(additional, int1)
+print(ints2)
+

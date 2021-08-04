@@ -1,0 +1,119 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Sat Apr 10 22:30:20 2021
+
+@author: Danny Ryan
+"""
+
+first = ["Help", "me", "stack", "overflow", "you're", "my", "only", "hope"]
+second = ["I", "hope", "you're", "enjoying", "the", "riddles", "I've", "created"]
+#Part One 
+print("Part 1:")
+#1
+one = [a for a in first if len(a) > 4]+[b for b in second if len(b) >4]
+print('#1',one)
+
+#2
+two = [a for a in first if a[0] =='o']
+print("#2", two)
+
+#3
+three = [a[-3:] for a in first]
+print("#3", three)
+
+#4
+four = [a for a in first if len(a)%2 ==1]+[b for b in second if len(b)%2 == 1]
+print("#4", four)
+
+#5
+five = [second.index(a) for a in second if len(a) %2 ==1]
+print("#5", five)
+
+#6
+six = [a for a in first if "y" in a ]+[b for b in second if "y" in b]
+print("#6", six)
+
+#7
+seven = [a for a in first for b in second if len(a) == len(b) and first.index(a) == second.index(b)]
+print("#7", seven)
+
+#8
+eight = [a for a in first if a in second]
+print("#8", eight)
+
+#9
+nine = [a.capitalize() for a in first]
+print("#9",nine)
+
+#10
+ten = [a.replace("o","aa") for a in first]
+print("#10", ten)
+
+#11
+eleven = [(x,y) for x in first for y in second if first.index(x)>3 and second.index(y) >3 and first.index(x) == second.index(y)]
+print("#11", eleven)
+
+#12
+twelve = [(a,b) for a in first for b in second if a in b]
+print("#12", twelve)
+
+#13
+thirteen = [a+b for a in first for b in second if len(a) > len(b)]
+print("#13" ,thirteen)
+
+#14
+fourteen = [second.index(a) for a in second if a[2:3] == 'e' ]
+print("#14", fourteen)
+
+#15
+fifteen = [(a[0],b[0]) for a in first for b in second]
+print('#15"',fifteen)
+
+#part 2 
+print("Part 2:")
+import re
+with open('lowerwords.txt') as file:
+    wordList = file.read().splitlines()
+def filterList(regax,wordList):
+    return [a for a in wordList if re.search(regax,a) ]
+
+#print(wordList)
+
+#1
+print("#1:",len(filterList(r'\w+e\b',wordList)))
+
+#2
+print("#1:",len(filterList(r'\b(...d)\b',wordList)))
+
+#3
+print("#3:",len(filterList(r'\b[aeiou].*',wordList)))
+
+#4
+print("#4:",len(filterList(r'.*[aeiou][aeiou]\b',wordList)))
+
+#5
+print("#5:",len(filterList(r'\b([aeiou]).*\1\b',wordList)))
+
+#6
+print("#6:",len(filterList(r'.*[aeiou][aeiou][aeiou][aeiou].*',wordList)))
+
+#7
+print("#7:",len(filterList(r'.*[e][r].*[e][r].*[e][r].*',wordList)))
+
+#8
+print("#8:",len(filterList(r'.*(\w\w).*\1.*\1.*',wordList)))
+
+#9
+print("#9:",len(filterList(r'.*(\w)(\w).*\2\1.*\1\2.*',wordList)))
+
+#10
+print("#10:",len(filterList(r'.*(\w)\1.*(\w)\2.*(\w)\3.*',wordList)))
+
+#11
+print("#11:",len(filterList(r'.*(\w)(\w)\1.*\1\2\1.*',wordList)))
+
+#12
+print("#12:",len(filterList(r'.*(\w)\w\1(\w)\w\2(\w)\w\3.*',wordList)))
+
+
+
